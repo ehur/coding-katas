@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 public class AnagramTest {
 
     @Test
-    public void twoWordsAreAnagrams_wordAnagrams(){
+    public void twoWordsAreAnagrams(){
         assertTrue("Same words", new Sentence("frog").isAnagramOf(new Sentence("frog")));
         assertTrue("Anagram words", new Sentence("arrest").isAnagramOf(new Sentence("rarest")));
         assertTrue("Anagram words with uppercase letters", new Sentence("Fresher").isAnagramOf(new Sentence("Refresh")));
