@@ -1,19 +1,7 @@
 package anagrams;
 
 import org.junit.Test;
-
 import java.util.Arrays;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-package anagrams;
-
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.HashMap;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -42,24 +30,5 @@ public class AnagramTest {
         assertFalse("Sentences are not anagrams", new Sentence("I am a fish").isAnagramOf(new Sentence("I am not a fish")));
     }
 
-
-
-    static class Utils{
-
-        public static char[] sortChars(char[] chars){
-            Arrays.sort(chars);
-            return chars;
-        }
-
-        public static Boolean sortedCharsAreEqual(char[] first, char[] second){
-            if(first.length != second.length){
-                return false;
-            }
-            for(int i=0;i<first.length;i++){
-                if(first[i] != second[i]) return false;
-            }
-            return true;
-        }
-    }
 }
 
