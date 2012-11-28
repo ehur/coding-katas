@@ -2,6 +2,8 @@ package anagrams;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -9,6 +11,7 @@ public class AnagramTest {
 
     @Test
     public void twoWordsAreAnagrams(){
+        assertTrue(new Sentence("same").isAnagramOf(new Sentence("same")));
         assertTrue(new Sentence("arrest").isAnagramOf(new Sentence("rarest")));
         assertTrue(new Sentence("fresher").isAnagramOf(new Sentence("refresh")));
     }
@@ -34,8 +37,54 @@ public class AnagramTest {
 
 
     class Sentence{
-        Boolean isAnagramOf(Sentence other){
 
+        private final String sentenceWords;
+
+        public Sentence(String arrest) {
+            sentenceWords = arrest;
+        }
+
+        Boolean isAnagramOf(Sentence other){
+            if (other.equals(this) )
+                return true;
+            else
+            {
+                char [] sortedOtherChars = sortedArray(other.sentenceWords.toLowerCase());
+                if ( arraysAreEquivalent(sortedOtherChars, sortedArray(sentenceWords.toLowerCase()))    )
+                    return true;
+            }
+            return false;
+        }
+
+        private boolean arraysAreEquivalent(char[] first, char[] second) {
+            for (int i = 0; i < first.length; i ++) {
+                if (first[i] != second[i] ) return false;
+            }
+            return true;
+        }
+
+        private char[] sortedArray(String input){
+            char [] sorted = input.toCharArray();
+            Arrays.sort(sorted);
+            return sorted;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Sentence sentence = (Sentence) o;
+
+            if (sentenceWords != null ? !sentenceWords.equals(sentence.sentenceWords) : sentence.sentenceWords != null)
+                return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            return sentenceWords != null ? sentenceWords.hashCode() : 0;
         }
     }
 }
