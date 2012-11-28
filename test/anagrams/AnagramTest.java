@@ -49,25 +49,13 @@ public class AnagramTest {
                 return true;
             else
             {
-                char [] sortedOtherChars = sortedArray(other.sentenceWords.toLowerCase());
-                if ( arraysAreEquivalent(sortedOtherChars, sortedArray(sentenceWords.toLowerCase()))    )
+                char [] sortedOtherChars = Utils.sortChars(other.sentenceWords.toLowerCase().toCharArray());
+                if (Utils.sortedCharsAreEqual(sortedOtherChars,  Utils.sortChars(sentenceWords.toLowerCase().toCharArray())))
                     return true;
             }
             return false;
         }
 
-        private boolean arraysAreEquivalent(char[] first, char[] second) {
-            for (int i = 0; i < first.length; i ++) {
-                if (first[i] != second[i] ) return false;
-            }
-            return true;
-        }
-
-        private char[] sortedArray(String input){
-            char [] sorted = input.toCharArray();
-            Arrays.sort(sorted);
-            return sorted;
-        }
 
         @Override
         public boolean equals(Object o) {
@@ -88,14 +76,14 @@ public class AnagramTest {
         }
     }
 
-    class Utils{
+    static class Utils{
 
-        public char[] sortChars(char[] chars){
+        public static char[] sortChars(char[] chars){
             Arrays.sort(chars);
             return chars;
         }
 
-        public Boolean sortedCharsAreEqual(char[] first, char[] second){
+        public static Boolean sortedCharsAreEqual(char[] first, char[] second){
             if(first.length != second.length){
                 return false;
             }
