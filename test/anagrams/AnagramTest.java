@@ -41,14 +41,14 @@ public class AnagramTest {
         }
     }
 
-    class Utils{
+    static class Utils{
 
-        public char[] sortChars(char[] chars){
+        public static char[] sortChars(char[] chars){
             Arrays.sort(chars);
             return chars;
         }
 
-        public Boolean sortedCharsAreEqual(char[] first, char[] second){
+        public static Boolean sortedCharsAreEqual(char[] first, char[] second){
             if(first.length != second.length){
                 return false;
             }
