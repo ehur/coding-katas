@@ -13,7 +13,7 @@ class Sentence{
         hash = getHash(this.words);
     }
     Boolean isAnagramOf(Sentence other){
-       return hash.equals(other.hash);
+        return hash.equals(other.hash);
     }
 
     private static Integer getHash(String sentence){
