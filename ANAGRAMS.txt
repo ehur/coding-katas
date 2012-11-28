@@ -1,0 +1,12 @@
+ANAGRAMS
+
+Definition:
+A word, phrase, or sentence formed from another by rearranging its letters
+
+Examples:
+"arrest" "rarest"
+"fresher" "refresh"
+"able was i" "i saw elba"
+
+Coding Problem:
+Complete the "isAnagramOf" method in the "Sentence" object to determine if two words or sentences are anagrams of each other.
