@@ -87,4 +87,22 @@ public class AnagramTest {
             return sentenceWords != null ? sentenceWords.hashCode() : 0;
         }
     }
+
+    class Utils{
+
+        public char[] sortChars(char[] chars){
+            Arrays.sort(chars);
+            return chars;
+        }
+
+        public Boolean sortedCharsAreEqual(char[] first, char[] second){
+            if(first.length != second.length){
+                return false;
+            }
+            for(int i=0;i<first.length;i++){
+                if(first[i] != second[i]) return false;
+            }
+            return true;
+        }
+    }
 }
