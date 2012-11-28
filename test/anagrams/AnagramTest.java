@@ -3,6 +3,7 @@ package anagrams;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -33,13 +34,6 @@ public class AnagramTest {
     }
 
 
-
-
-    class Sentence{
-        Boolean isAnagramOf(Sentence other){
-
-        }
-    }
 
     static class Utils{
 
