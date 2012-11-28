@@ -10,52 +10,26 @@ import static org.junit.Assert.assertTrue;
 public class AnagramTest {
 
     @Test
-    public void twoWordsAreAnagrams(){
-        assertTrue(new Sentence("arrest").isAnagramOf(new Sentence("rarest")));
-        assertTrue(new Sentence("fresher").isAnagramOf(new Sentence("refresh")));
+    public void twoWordsAreAnagrams_wordAnagrams(){
+        assertTrue(new Sentence("frog").isAnagramOf(new Sentence("frog")), "Words are the same");
+        assertTrue(new Sentence("arrest").isAnagramOf(new Sentence("rarest")), "Words are anagrams");
+        assertTrue(new Sentence("Fresher").isAnagramOf(new Sentence("Refresh")), "Words are anagrams, uppercase letters");;
     }
-
 
     @Test
     public void twoWordsAreNotAnagrams(){
-        assertFalse(new Sentence("fish").isAnagramOf(new Sentence("frog")));
-        assertFalse(new Sentence("bag").isAnagramOf(new Sentence("handlebars")));
+        assertFalse(new Sentence("bag").isAnagramOf(new Sentence("handlebars")), "Not anagrams and different lengths");
+        assertFalse(new Sentence("fish").isAnagramOf(new Sentence("frog")), "Not anagrams but same length");
     }
 
     @Test
     public void twoSentencesAreAnagrams(){
-        assertTrue(new Sentence("able was I").isAnagramOf(new Sentence("i saw Elba")));
+        assertTrue(new Sentence("able was I").isAnagramOf(new Sentence("i saw Elba")), "Sentences are anagrams");
     }
 
     @Test
     public void twoSentencesAreNotAnagrams(){
-        assertFalse(new Sentence("I am a fish").isAnagramOf(new Sentence("I am not a fish")));
+        assertFalse(new Sentence("I am a fish").isAnagramOf(new Sentence("I am not a fish")), "Sentences are not anagrams");
     }
 
-
-
-
-    class Sentence{
-        Boolean isAnagramOf(Sentence other){
-
-        }
-    }
-
-    static class Utils{
-
-        public static char[] sortChars(char[] chars){
-            Arrays.sort(chars);
-            return chars;
-        }
-
-        public static Boolean sortedCharsAreEqual(char[] first, char[] second){
-            if(first.length != second.length){
-                return false;
-            }
-            for(int i=0;i<first.length;i++){
-                if(first[i] != second[i]) return false;
-            }
-            return true;
-        }
-    }
 }
