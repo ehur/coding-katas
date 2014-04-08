@@ -10,12 +10,20 @@ public class AnagramTest {
     @Test
     public void twoWordsAreAnagrams(){
         assertTrue("Anagram words", new Sentence("arrest").isAnagramOf(new Sentence("rarest")));
+    }
+
+    @Test
+    public void anagramsAreCaseInsensitive(){
         assertTrue("Anagram words with uppercase letters", new Sentence("Fresher").isAnagramOf(new Sentence("Refresh")));
     }
 
     @Test
-    public void twoWordsAreNotAnagrams(){
+    public void twoWordsOfDifferentLengthsAreNotAnagrams(){
         assertFalse("Not anagram and different length", new Sentence("bag").isAnagramOf(new Sentence("handlebars")));
+    }
+
+    @Test
+    public void twoWordsOfSameLengthsAreNotAnagrams(){
         assertFalse("Not anagram but same length", new Sentence("fish").isAnagramOf(new Sentence("frog")));
     }
 
