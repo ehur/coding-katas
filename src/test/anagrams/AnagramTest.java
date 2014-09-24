@@ -37,4 +37,9 @@ public class AnagramTest {
         assertFalse("Sentences are not anagrams", new Sentence("I am a fish").isAnagramOf(new Sentence("I am not a fish")));
     }
 
+    @Test
+    public void spacesAreIgnored() {
+        assertTrue("Sentences are anagrams", new Sentence("a leb was I").isAnagramOf(new Sentence("i saw Elba")));
+    }
+
 }
