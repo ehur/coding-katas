@@ -1,4 +1,8 @@
 val xs = List(1,2,3,4)
+val h = List(List(1,2,3,4),List(5,4,3,2))
+val thingy = h.map(_.head)
+val thingy2 =  h.map(_.tail)
+
 val source = scala.io.Source.fromFile("/home/lhurley/git/coding-katas/ex1data1.txt")
 val lines = source.getLines().toList
 def getCol(x: scala.collection.immutable.List[String], colIndex: Int) = {
@@ -36,7 +40,6 @@ def addOnes(matrix:Matrix) : Matrix = {
   val one: Double = 1
   matrix map {row:MatrixRow => one :: row}
 }
-
 val newX=transpose(List(X))
 val newXWithOnes=addOnes(newX)
 

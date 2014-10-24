@@ -1,9 +1,9 @@
 package math
 
-object Matrix extends App {
+object Matrix {
 
   type MatrixRow = scala.collection.immutable.List[Double]
-  type Matrix = scala.collection.immutable.List[MatrixRow]
+  type MxNMatrix = scala.collection.immutable.List[MatrixRow]
 
   def sum(xs: scala.collection.immutable.List[Double]): Double = {
     def inner(xs: scala.collection.immutable.List[Double], accum: Double): Double = {
@@ -14,7 +14,7 @@ object Matrix extends App {
     }
     inner(xs, 0)
   }
-  def transpose(m:Matrix):Matrix = {
+  def transpose(m:MxNMatrix):MxNMatrix = {
     if (m.head.isEmpty) Nil else m.map(_.head) :: transpose(m.map(_.tail))
   }
 
@@ -29,7 +29,19 @@ object Matrix extends App {
     v1.zip( v2 ).map{t:(Double,Double) => t._1 - t._2 }
   }
 
-  def multiply(m1:Matrix,m2:Matrix) = {
+  def multiplyVector(vec: MatrixRow, mat: MxNMatrix): MatrixRow = {
+    if (vec.size != mat.size) //n's don't match { {}
+      throw new IllegalArgumentException("matrix1 cols: " + vec.size + " cannot be multiplied with matrix2 rows: " + mat.size)
+    else {
+      val result =
+          for (entry <- vec) yield
+            for (m2col <- transpose(mat)) yield
+              m2col.map{t:Double => t * entry}.reduceLeft(_ +_)
+      result.head
+    }
+  }
+
+  def multiply(m1:MxNMatrix,m2:MxNMatrix) = {
     // m x n * n x o -> m x o
     if (m1.head.size != m2.size) //n's don't match { {}
       throw new IllegalArgumentException("matrix1 cols: " + m1.head.size + " cannot be multiplied with matrix2 rows: " + m2.size)
@@ -40,7 +52,7 @@ object Matrix extends App {
     }
   }
 
-  def matrixSize(m:Matrix) : (Int,Int) = {
+  def matrixSize(m:MxNMatrix) : (Int,Int) = {
     val rows = m.size
     val cols = m.head.size
     return (rows,cols)
