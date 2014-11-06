@@ -1,5 +1,6 @@
 package linearregression
 
+import breeze.linalg.{sum, DenseVector, DenseMatrix}
 import math.Matrix
 import Matrix.{MatrixRow, MxNMatrix}
 
@@ -14,6 +15,42 @@ object Formulae {
     val hypError = Matrix.subtract(h,y)
     val squaredHypError = Matrix.elementwiseProduct(hypError,hypError)
     (1d/(2*m)) * Matrix.sum(squaredHypError)
+  }
+
+
+  def computeCostBreeze(X:DenseMatrix[Double],
+                        y:DenseMatrix[Double],
+                        theta:DenseMatrix[Double]) : Double= {
+    val m=y.cols
+    val hyp:DenseMatrix[Double] = theta * X.t
+    val hypError:DenseMatrix[Double] = hyp - y
+    val squaredHypError = hypError :* hypError
+    val retVal = (1d/(2*m)) * sum(squaredHypError)
+    retVal
+  }
+
+  def gradientDescentBreeze(X:DenseMatrix[Double],
+                        y:DenseMatrix[Double],
+                        theta:DenseMatrix[Double],
+                        alpha:Double, numIters:Int) : (DenseMatrix[Double],DenseMatrix[Double]) = {
+      val m: Integer = y.cols
+      val numFeatures = X.cols
+      var jHistArray = new Array[Double](numIters)
+      var thetaTemp = theta
+      for (iter <- 0 until numIters){
+        var thetaNew = new DenseMatrix[Double](1,numFeatures)
+        for (featureNum <- 0 until numFeatures) {
+          val derivFirst = (thetaTemp * X.t) - y
+          val derivSecond = X(::,featureNum)
+          val resy= derivFirst * derivSecond
+          val deriv:Double = sum(derivFirst * derivSecond)
+//          println("feature: " + featureNum + " deriv: " + deriv)
+          thetaNew(0,featureNum) = thetaTemp(0,featureNum) - (alpha/m) * deriv;
+        }
+      thetaTemp = thetaNew
+      jHistArray(iter) = computeCostBreeze(X,y,thetaTemp)
+      }
+    (new DenseMatrix[Double](1, numIters, jHistArray), thetaTemp)
   }
 
   def gradientDescent(xMatrix:MxNMatrix, y:MatrixRow, theta:MatrixRow, alpha:Double, numIters:Int) : (MatrixRow, List[Double]) = {
