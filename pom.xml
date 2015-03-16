@@ -48,6 +48,12 @@ http://www.jfrog.org/sites/artifactory/latest/usage.html -->
             <artifactId>breeze-natives_2.10</artifactId>
             <version>0.10</version>
         </dependency>
+        <dependency>
+            <groupId>org.schwering</groupId>
+            <artifactId>irclib</artifactId>
+            <version>1.10</version>
+        </dependency>
+
 
 
 

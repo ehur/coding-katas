@@ -1,22 +1,11 @@
 package linearregression
 
-import breeze.linalg.{sum, DenseVector, DenseMatrix}
+import breeze.linalg.{*, sum, DenseVector, DenseMatrix}
+import breeze.stats.{mean,stddev}
 import math.Matrix
 import Matrix.{MatrixRow, MxNMatrix}
 
 object Formulae {
-
-  def computeCost(X:MxNMatrix,
-                  y:MatrixRow,
-                  theta:MatrixRow) : Double = {
-    val m = y.size
-    val thetaMatrix: MxNMatrix = List(theta)
-    val h=Matrix.multiply(thetaMatrix,Matrix.transpose(X)).head  //1 x 2 * 2 x m  -> 1 x m
-    val hypError = Matrix.subtract(h,y)
-    val squaredHypError = Matrix.elementwiseProduct(hypError,hypError)
-    (1d/(2*m)) * Matrix.sum(squaredHypError)
-  }
-
 
   def computeCostBreeze(X:DenseMatrix[Double],
                         y:DenseMatrix[Double],
@@ -53,6 +42,21 @@ object Formulae {
     (new DenseMatrix[Double](1, numIters, jHistArray), thetaTemp)
   }
 
+  def featureNormalize(xMatrix: DenseMatrix[Double]) : (DenseMatrix[Double],DenseVector[Double],DenseVector[Double]) = {
+//    var mu = new Array[Double](xMatrix.cols)
+//    var sigma = new Array[Double](xMatrix.cols)
+    var xNorm = DenseMatrix.zeros[Double](xMatrix.rows,xMatrix.cols)
+    val mu: DenseMatrix[Double] = mean(xMatrix(::,*))
+    val sigma: DenseMatrix[Double] = stddev(xMatrix(::,*))
+    for (featureNum <- 0 until xMatrix.cols) {
+        if (sigma(0, featureNum) == 0)
+          xNorm(::, featureNum) := 0.0
+        else
+          xNorm(::, featureNum) := (xMatrix(::, featureNum) - mu(0,featureNum)) :/ sigma(0,featureNum)
+    }
+    (xNorm,mu(0,::).t,sigma(0,::).t)
+  }
+
   def gradientDescent(xMatrix:MxNMatrix, y:MatrixRow, theta:MatrixRow, alpha:Double, numIters:Int) : (MatrixRow, List[Double]) = {
       val m = y.size
       var jHistory:List[Double] = Nil
@@ -72,4 +76,16 @@ object Formulae {
     val res = (jHistory, thetaGrad)
     res
   }
+
+  def computeCost(X:MxNMatrix,
+                  y:MatrixRow,
+                  theta:MatrixRow) : Double = {
+    val m = y.size
+    val thetaMatrix: MxNMatrix = List(theta)
+    val h=Matrix.multiply(thetaMatrix,Matrix.transpose(X)).head  //1 x 2 * 2 x m  -> 1 x m
+    val hypError = Matrix.subtract(h,y)
+    val squaredHypError = Matrix.elementwiseProduct(hypError,hypError)
+    (1d/(2*m)) * Matrix.sum(squaredHypError)
+  }
+
 }
