@@ -1,4 +1,4 @@
-package kata.anagrams;
+package anagrams;
 
 import java.util.Arrays;
 

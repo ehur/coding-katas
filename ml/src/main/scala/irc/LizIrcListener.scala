@@ -1,4 +1,6 @@
-import org.schwering.irc.lib.{IRCModeParser, IRCUser, IRCEventListener}
+package irc
+
+import org.schwering.irc.lib.{IRCEventListener, IRCModeParser, IRCUser}
 
 class LizIrcListener extends IRCEventListener {
   def onRegistered {

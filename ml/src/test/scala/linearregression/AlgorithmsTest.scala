@@ -1,9 +1,9 @@
-package test.scala.linearregression
+package linearregression
 
 import java.io.File
 
 import breeze.linalg._
-import linearregression.linearregression
+import linearregression.{Formulae, linearregression}
 import linearregression.linearregression.Formulae
 import main.scala
 import main.scala.linearregression.Formulae

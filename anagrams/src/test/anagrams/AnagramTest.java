@@ -1,4 +1,4 @@
-package kata.anagrams;
+package anagrams;
 
 
 import org.junit.Test;

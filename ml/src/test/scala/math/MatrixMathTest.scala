@@ -3,9 +3,9 @@ package math
 import java.io.File
 
 import breeze.linalg._
-import linearregression.Formulae
 import math.Matrix._
 import org.scalatest.{FlatSpec, ShouldMatchers}
+import linearregression.Formulae
 
 class MatrixMathTest extends FlatSpec with ShouldMatchers {
 
@@ -23,7 +23,7 @@ class MatrixMathTest extends FlatSpec with ShouldMatchers {
   "Matrix multiplyVector 1 x n * n x o" should "give 1 x o" in {
     val a:MxNMatrix = List(List(1,1,1),List(2,2,2))
     val b:MatrixRow= List(2,2)
-    val prod:MatrixRow = Matrix.multiplyVector(b,a)
+    val prod:MatrixRow = math.Matrix.multiplyVector(b,a)
     val expected:MatrixRow = List(6d,6d,6d)
     prod should be(expected)
   }
@@ -54,7 +54,7 @@ class MatrixMathTest extends FlatSpec with ShouldMatchers {
   def setupXandY: (MxNMatrix, MatrixRow) = {
     val source = scala.io.Source.fromFile("/home/lhurley/git/coding-katas/ex1data1.txt")
     val lines = source.getLines().toList
-    val xMatrix = Matrix.transpose(List(getCol(lines,0) map {x:String => x.toDouble})) //(m x 1 matrix)
+    val xMatrix = math.Matrix.transpose(List(getCol(lines,0) map {x:String => x.toDouble})) //(m x 1 matrix)
     val y = getCol(lines,1) map {x:String => x.toDouble}
     source.close()
     (xMatrix,y)
