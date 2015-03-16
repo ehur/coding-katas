@@ -1,8 +1,12 @@
-package linearregression
+package test.scala.linearregression
 
 import java.io.File
 
 import breeze.linalg._
+import linearregression.linearregression
+import linearregression.linearregression.Formulae
+import main.scala
+import main.scala.linearregression.Formulae
 import org.scalatest._
 import breeze.stats.{mean,stddev}
 
@@ -15,7 +19,7 @@ class AlgorithmsTest extends FlatSpec with ShouldMatchers {
     val xMatrix = DenseMatrix.horzcat(onesM,xCol) //col of ones and first col of file data - X has now 2 features
     val y = xy(::,1).toDenseMatrix               // y is a row vector with entries for each example
     val theta = DenseMatrix.zeros[Double](1,xMatrix.cols) //theta is a row vector(DenseMatrix with 1 row here) with entries for each feature - we have 2 features
-    val J=linearregression.Formulae.computeCostBreeze(xMatrix,y,theta)
+    val J=Formulae.computeCostBreeze(xMatrix,y,theta)
 
     J should be (32.072733877455654d)
     println("Cost is: " + J)
@@ -34,7 +38,7 @@ class AlgorithmsTest extends FlatSpec with ShouldMatchers {
     val alpha: Double = 0.01d
     val numIters: Int = 1500
 
-    val (jHistory, thetaNew):(DenseMatrix[Double],DenseMatrix[Double]) = linearregression.Formulae.gradientDescentBreeze(xMatrix,y,theta,alpha,numIters)
+    val (jHistory, thetaNew):(DenseMatrix[Double],DenseMatrix[Double]) = Formulae.gradientDescentBreeze(xMatrix,y,theta,alpha,numIters)
 
     jHistory.size should be(numIters)
     thetaNew(0,0) should be(-3.63029143940436)
@@ -52,7 +56,7 @@ class AlgorithmsTest extends FlatSpec with ShouldMatchers {
     val xCols = xy(::,0 to 1).toDenseMatrix.t
 //    xCols(0,4) should be (3000)
 //    xCols(1,3) should be (2)
-    val (xNorm, mu, sigma) = linearregression.Formulae.featureNormalize(xCols)
+    val (xNorm, mu, sigma) = scala.linearregression.Formulae.featureNormalize(xCols)
     val muFirst = mean(xNorm(::,0))
     val muSecond = mean(xNorm(::,1))
     muFirst should be(0)

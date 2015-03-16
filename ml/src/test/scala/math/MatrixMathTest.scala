@@ -3,6 +3,7 @@ package math
 import java.io.File
 
 import breeze.linalg._
+import linearregression.Formulae
 import math.Matrix._
 import org.scalatest.{FlatSpec, ShouldMatchers}
 
@@ -13,7 +14,7 @@ class MatrixMathTest extends FlatSpec with ShouldMatchers {
     val (xMatrix,y): (MxNMatrix, MatrixRow) = setupXandY
     val XwithOnes = addOnes(xMatrix)        //(m x 2 matrix)
     val theta: MatrixRow = List(0,0)
-    val J=linearregression.Formulae.computeCost(XwithOnes,y,theta)
+    val J=Formulae.computeCost(XwithOnes,y,theta)
 
     J should be (32.072733877455654d)
     println("Cost is: " + J)
@@ -33,7 +34,7 @@ class MatrixMathTest extends FlatSpec with ShouldMatchers {
     val theta:MatrixRow= List(0,0)
     val alpha: Double = 0.01d
     val numIters: Int = 1500
-    val (jHistory, thetaNew):(MatrixRow,List[Double]) = linearregression.Formulae.gradientDescent(XwithOnes,y,theta,alpha,numIters)
+    val (jHistory, thetaNew):(MatrixRow,List[Double]) = Formulae.gradientDescent(XwithOnes,y,theta,alpha,numIters)
     jHistory.size should be(numIters)
     for (i <- 0 until numIters-1) {
       println("iter number: " + i + " and cost is: " + jHistory(i))

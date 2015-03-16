@@ -1,9 +1,7 @@
 package linearregression
 
-import breeze.linalg.{*, sum, DenseVector, DenseMatrix}
-import breeze.stats.{mean,stddev}
-import math.Matrix
-import Matrix.{MatrixRow, MxNMatrix}
+import breeze.linalg.{*, DenseMatrix, DenseVector, sum}
+import breeze.stats.{mean, stddev}
 
 object Formulae {
 

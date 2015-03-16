@@ -54,8 +54,5 @@ http://www.jfrog.org/sites/artifactory/latest/usage.html -->
             <version>1.10</version>
         </dependency>
 
-
-
-
     </dependencies>
 </project>
