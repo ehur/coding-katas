@@ -1,6 +1,12 @@
-package exercises;
+package temperature;
 
 import org.junit.Test;
+import temperature.TemperatureConverter;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 public class TemperatureConverterTest {
@@ -51,5 +57,24 @@ public class TemperatureConverterTest {
         TemperatureConverter converter = new TemperatureConverter();
         Double temp = converter.convert(10.0, TemperatureConverter.KELVIN, TemperatureConverter.CELSIUS);
         assertEquals(Double.valueOf(10.0), temp);
+    }
+
+    @Test
+    public void pickTheOscarWinner() {
+        Map<Integer,String> nominees = new HashMap<Integer,String>();
+        nominees.put(1,"The Big Short");
+        nominees.put(2,"Bridge of Spies");
+        nominees.put(3,"Brooklyn");
+        nominees.put(4,"Mad Max");
+        nominees.put(5,"The Martian");
+        nominees.put(6,"The Revenant");
+        nominees.put(7,"Room");
+        nominees.put(8,"Spotlight");
+
+        Random r= new Random();
+        int winner = r.nextInt(8);
+        System.out.println("winner is: " + nominees.get(winner));
+        assertEquals(winner, 3);
+
     }
 }

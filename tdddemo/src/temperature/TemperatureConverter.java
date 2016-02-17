@@ -1,4 +1,4 @@
-package exercises;
+package temperature;
 
 public class TemperatureConverter {
 
