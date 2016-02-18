@@ -2,7 +2,9 @@ package observables
 import org.scalatest.{ShouldMatchers, FlatSpec, Matchers}
 import rx.lang.scala.Observable
 import scala.concurrent.duration._
-
+/*
+tinkering with examples from https://github.com/ReactiveX/RxScala/blob/0.x/examples/src/test/scala/examples/RxScalaDemo.scala
+ */
 class ObservableKataTest extends FlatSpec with ShouldMatchers {
 
   "observables" should "work with foreach" in {
@@ -44,10 +46,48 @@ class ObservableKataTest extends FlatSpec with ShouldMatchers {
   }
 
   "observables" should "work for intervals" in {
-    val o=Observable.interval(200 millis).take(5)
+    val o=Observable.interval(200 millis).take(5)   // The Interval operator returns an Observable that emits an infinite sequence of ascending integers, with a constant interval of time of your choosing between emissions.
     for (num <- o) println(num)
     waitFor(o)
     println("done with interval thingy")
+  }
+
+  "observables" should "tumble their buffers" in {
+    val fiveHundred = 1 to 500 toList
+    val o = Observable.from(fiveHundred)
+    val newO: Observable[(Int,Int)] = o.tumblingBuffer(5 seconds,50) map {
+      // tumblingbuffer to capture buckets which we then map to new tuple. Those tuples will then be emitted as observable of tuples
+      bucket =>
+        if (bucket.nonEmpty) {
+          (bucket.head, bucket.last)
+        } else {
+          (501, 501) //the end of the bucket
+        }
+    }
+    newO.foreach(
+      n => println(s"first of bucket: ${n._1} and last of bucket: ${n._2}"),
+      e => e.printStackTrace(),   //onError
+      () => println("done")       //onComplete
+    )
+  }
+
+  "observables" should "slide their buffers" in {
+    val fiveHundred = 1 to 500 toList
+    val o = Observable.from(fiveHundred)
+    val newO: Observable[(Int,Int)] = o.slidingBuffer(50,100) map {
+      bucket =>
+        if (bucket.nonEmpty) {
+          (bucket.head, bucket.last)
+        } else {
+          (501, 501) //the end of the bucket
+        }
+    }
+    newO.foreach(
+      n => println(s"first of bucket: ${n._1} and last of bucket: ${n._2}"),
+      e => e.printStackTrace(),   //onError
+      () => println("done")       //onComplete
+    )
+
   }
 
   "observables" should "compare" in {
@@ -60,7 +100,7 @@ class ObservableKataTest extends FlatSpec with ShouldMatchers {
       () => println("that's all!")
     )
     val b = (first zip second) forall {case (a,b)=> a==b}
-    b.toBlocking.single should be (true)
+    b.toBlocking.single should be (true)     // A Single is something like an Observable, but instead of emitting a series of values — anywhere from none at all to an infinite number — it always either emits one value or an error notification.
   }
 
 def waitFor[T](observable: Observable[T]):Unit = {
