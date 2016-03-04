@@ -11,6 +11,18 @@ public class RomanNumeralsEncodingTest {
         String one = "I";
         String five = "V";
         assertEquals("I",one); //(expected string, actual string)
-//        assertEquals(five,one);
+        assertEquals(five,one);
+    }
+
+    @Test
+    public void shouldWorkForOne(){
+        String result = RomanNumeralsUtil.encode(1);
+        assertEquals("I",result);
+    }
+
+    @Test
+    public void shouldWorkForTwo() {
+        String result = RomanNumeralsUtil.encode(2);
+        assertEquals("II", result);
     }
 }
