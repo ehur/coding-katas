@@ -1,14 +1,15 @@
 package observables
-import org.scalatest.{ShouldMatchers, FlatSpec, Matchers}
+import org.scalatest.{FlatSpec, Matchers}
 import rx.lang.scala.Observable
+
 import scala.concurrent.duration._
 /*
 tinkering with examples from https://github.com/ReactiveX/RxScala/blob/0.x/examples/src/test/scala/examples/RxScalaDemo.scala
  */
-class ObservableKataTest extends FlatSpec with ShouldMatchers {
+class ObservableKataTest extends FlatSpec with Matchers {
 
   "observables" should "work with foreach" in {
-    val o = Observable.just(1,2,3)
+    val o = Observable.from(Seq(1,2,3))
     //foreach is an alias to subscribe
     o.foreach(
     n => println(n),        //onNext

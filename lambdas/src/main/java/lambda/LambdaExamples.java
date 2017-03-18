@@ -36,5 +36,5 @@ public class LambdaExamples {
         }
     }
 
-    public void operF(Function<(List<Integer>, Predicate<Integer>), T>)
+//    public void operF(Function<(List<Integer>, Predicate<Integer>), T>)
 }

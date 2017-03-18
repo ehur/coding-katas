@@ -13,7 +13,7 @@ def createTestActionFile(sc:SparkContext) = {
   val endEventTime = new DateTime(2015,9,22,0,0,0)
 
   val action1 = Action.newBuilder(new Action).setEventId("event1").setEventTimestamp(beginEventTime.getMillis).build()
-  val action2 = Action.newBuilder(new Action).setEventId("event2").setEventTimestamp(endEventTime.getMillis).build()
+  val action2 = Action.newBuilder(new Action)./**/setEventId("event2").setEventTimestamp(endEventTime.getMillis).build()
 
   val eventsToWrite: RDD[Action] = sc.parallelize(Seq(action1,action2))
   eventsToWrite.write.parquet("sparkSqlActions.parquet")

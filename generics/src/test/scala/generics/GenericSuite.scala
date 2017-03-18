@@ -1,6 +1,6 @@
 package generics
 
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 import scala.reflect._
 import scala.reflect.runtime.{universe => ru}
