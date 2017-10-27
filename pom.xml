@@ -6,6 +6,9 @@
     <artifactId>master</artifactId>
     <name>coding-katas</name>
     <version>1.0</version>
+    <modules>
+        <module>simple-akka-actors</module>
+    </modules>
     <packaging>pom</packaging>
     <url>github.com</url>
     <description>coding-katas</description>

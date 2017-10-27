@@ -104,6 +104,18 @@ class ObservableKataTest extends FlatSpec with Matchers {
     b.toBlocking.single should be (true)     // A Single is something like an Observable, but instead of emitting a series of values — anywhere from none at all to an infinite number — it always either emits one value or an error notification.
   }
 
+  "observables" should "slide along a buffer of 2" in {
+    val o = Observable.from(Seq(1,2,3,4,5,6))
+    val pairs = o.slidingBuffer(2,1)
+    pairs.foreach(
+      pair => {
+       for {   a <- pair.headOption
+               b <- pair.tail.headOption  //if None returned, it will not do the println, so we avoid dangling single Ints
+        } println(a,b)
+      }
+    )
+  }
+
 def waitFor[T](observable: Observable[T]):Unit = {
     observable.toBlocking.toIterable.last
   }
