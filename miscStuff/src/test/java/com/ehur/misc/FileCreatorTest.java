@@ -1,3 +1,5 @@
+package com.ehur.misc;
+
 import org.junit.Test;
 
 import java.io.File;

@@ -1,5 +1,3 @@
-package scala
-
 import org.scalatest.{FlatSpec, Matchers}
 
 class Folding extends FlatSpec with Matchers{
