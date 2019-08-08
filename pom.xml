@@ -57,7 +57,7 @@ http://www.jfrog.org/sites/artifactory/latest/usage.html -->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.11</artifactId>
-            <version>2.3.1</version>
+            <version>2.3.3</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -87,4 +87,16 @@ http://www.jfrog.org/sites/artifactory/latest/usage.html -->
 
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

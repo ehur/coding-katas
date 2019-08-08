@@ -1,8 +1,8 @@
-import org.scalatest.{ShouldMatchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 import scala.util.Random
 
-class ListSuite extends FlatSpec with ShouldMatchers {
+class ListSuite extends FlatSpec with Matchers {
 
   def getLeastTwo(list:List[Int]): (Int,Int) = {
     val leastOne = list.reduceLeft(_ min _)

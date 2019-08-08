@@ -47,6 +47,6 @@ class LizTest extends FlatSpec with PropertyChecks {
     def genInstant: Gen[Instant] = Gen.choose(rangeStart.toEpochMilli, rangeEnd.toEpochMilli)
       .map(i => Instant.ofEpochMilli(i))
     forAll (genInstant) {(ins:Instant) =>println(ins)}
-
   }
+
 }
