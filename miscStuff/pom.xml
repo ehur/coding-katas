@@ -3,27 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>master</artifactId>
+        <artifactId>katas-master</artifactId>
         <groupId>com.ehur</groupId>
         <version>1.0</version>
-        <relativePath>../../coding-katas/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ehur</groupId>
+    <artifactId>miscStuff</artifactId>
+    <version>0.1-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.major>2.12</scala.major>
-        <scala.major.minor>2.12.4</scala.major.minor>
+        <scala.major.minor>2.12.6</scala.major.minor>
     </properties>
 
-    <artifactId>miscStuff</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.major.minor}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.major.minor}</version>
+        </dependency>
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.major}</artifactId>
@@ -36,6 +42,12 @@
             <version>1.14.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10.4</version>
+        </dependency>
+
 
     </dependencies>
 

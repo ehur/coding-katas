@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <parent>
         <groupId>com.ehur</groupId>
-        <artifactId>master</artifactId>
+        <artifactId>katas-master</artifactId>
         <version>1.0</version>
     </parent>
     <dependencies>

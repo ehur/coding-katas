@@ -1,7 +1,6 @@
 package temperature;
 
 import org.junit.Test;
-import temperature.TemperatureConverter;
 
 import java.util.HashMap;
 import java.util.Map;

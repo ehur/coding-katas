@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ehur</groupId>
-    <artifactId>master</artifactId>
+    <artifactId>katas-master</artifactId>
     <name>coding-katas</name>
     <version>1.0</version>
 
@@ -26,72 +26,91 @@ http://www.jfrog.org/sites/artifactory/latest/usage.html -->
         </repository>
     </repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_2.12</artifactId>
-            <version>3.0.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.scalanlp</groupId>
-            <artifactId>breeze_2.10</artifactId>
-            <version>0.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.scalanlp</groupId>
-            <artifactId>breeze-natives_2.10</artifactId>
-            <version>0.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.schwering</groupId>
-            <artifactId>irclib</artifactId>
-            <version>1.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.3.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cj</groupId>
-            <artifactId>protocol</artifactId>
-            <version>cjdev-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cj</groupId>
-            <artifactId>protocol-access</artifactId>
-            <version>cjdev-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive_2.10</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.httpobjects</groupId>
-            <artifactId>httpobjects</artifactId>
-            <version>0.13.1-SNAPSHOT</version>
-        </dependency>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <scala.major>2.12</scala.major>
+        <scala.major.minor>2.12.6</scala.major.minor>
+    </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.major.minor}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-reflect</artifactId>
+                <version>${scala.major.minor}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_${scala.major}</artifactId>
+                <version>3.0.5</version>
+                <scope>test</scope>
+            </dependency>
 
-    </dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.scalanlp</groupId>
+                <artifactId>breeze_2.10</artifactId>
+                <version>0.10</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalanlp</groupId>
+                <artifactId>breeze-natives_2.10</artifactId>
+                <version>0.10</version>
+            </dependency>
+            <dependency>
+                <groupId>org.schwering</groupId>
+                <artifactId>irclib</artifactId>
+                <version>1.10</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_2.11</artifactId>
+                <version>2.3.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_2.11</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cj</groupId>
+                <artifactId>protocol</artifactId>
+                <version>cjdev-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cj</groupId>
+                <artifactId>protocol-access</artifactId>
+                <version>cjdev-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-hive_2.10</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.httpobjects</groupId>
+                <artifactId>httpobjects</artifactId>
+                <version>0.13.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -99,4 +118,8 @@ http://www.jfrog.org/sites/artifactory/latest/usage.html -->
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>miscStuff</module>
+    </modules>
+
 </project>

@@ -1,5 +1,3 @@
-package com.ehur.misc
-
 import org.joda.time.Days
 import org.joda.time.format.DateTimeFormat
 import org.scalatest.{FlatSpec, Matchers}

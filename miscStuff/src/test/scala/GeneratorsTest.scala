@@ -4,7 +4,7 @@ import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.FlatSpec
 import org.scalatest.prop.PropertyChecks
 
-class LizTest extends FlatSpec with PropertyChecks {
+class GeneratorsTest extends FlatSpec with PropertyChecks {
 
   it should "make sense" in {
     //List(0)
